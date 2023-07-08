@@ -9,13 +9,12 @@ export default function Home(){
     const [cuisineId, setCuisineId] = useState("")
     const navigate = useNavigate()
 
-    console.log(123, cuisineDatas, restaurantData)
+   
 
 
     let filteredRestaurantList;
 
     const selectCuisine = (cuisineId) =>{
-      console.log(cuisineId)
       setCuisineId(cuisineId)
     }
 

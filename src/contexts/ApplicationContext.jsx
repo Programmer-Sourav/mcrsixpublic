@@ -21,7 +21,7 @@ export function ApplicationProvider({children}){
     useEffect(()=>{getRestaurantsData()},[])
 
     const addReview = () =>{
-        console.log(777, rating)
+        
         const review = {
             revName: "Sourav", 
             pp: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5tbKdv1HDbAjPc526SK0yDZuoOmaaOyGNoj_e1q3ngruK2bTqzub3&s=0", 

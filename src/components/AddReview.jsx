@@ -27,19 +27,19 @@ import { ApplicationContext } from "../contexts/ApplicationContext";
   
     const onRatingChangeHandler = (e) => {
       setRating(e.target.value);
-      console.log(rating)
+      
     };
   
     const onCommentHandler = (e) => {
       setComment(e.target.value);
-      console.log(comment)
+      
     };
   
   
     return (
       <>
         <button onClick={onOpen}>
-          <button onClick={onOpen}>Add Review</button>
+          <button style={{background: "red", color: "white"}} onClick={onOpen}>Add Review</button>
         </button>
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />

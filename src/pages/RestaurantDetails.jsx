@@ -23,7 +23,7 @@ export default function RestaurantDetails(){
         <div>
             {   
             <ul>
-                {findRestaurant.name} 
+               <h1> {findRestaurant.name} </h1>
       <ChakraProvider>
         <AddReview/>
       </ChakraProvider>
