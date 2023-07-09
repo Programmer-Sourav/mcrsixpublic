@@ -16,11 +16,12 @@ import { ApplicationContext } from "../contexts/ApplicationContext";
   
   function AddReview() {
     const { isOpen, onClose, onOpen } = useDisclosure();
+
+    const [rating, setRating] = useState("")
+    const [comment, setComment] = useState("")
+   
     const {
-      rating,
-      setRating,
-      comment,
-      setComment,
+    
       addReview
      
     } = useContext(ApplicationContext);
@@ -89,7 +90,7 @@ import { ApplicationContext } from "../contexts/ApplicationContext";
                   borderRadius: "8px"
                 }}
                 onClick={() => {
-                  addReview();
+                  addReview(rating, comment);
                 }}
               >
                 {" "}

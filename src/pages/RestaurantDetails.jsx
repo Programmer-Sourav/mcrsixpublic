@@ -7,8 +7,8 @@ import { AddReview } from "../components/AddReview"
 export default function RestaurantDetails(){
 
     const { id} = useParams()
-    const { restaurantData, allComments } = useContext(ApplicationContext)
-    const [updated, setUpdated] = useState([])
+    const { restaurantData, allComments, setAllComments } = useContext(ApplicationContext)
+    
 
     function findRestaurantDetails(){
       return restaurantData.find((restaurant)=>(restaurant.id.toString()===id))   
@@ -16,9 +16,18 @@ export default function RestaurantDetails(){
 
     const findRestaurant = findRestaurantDetails()
     
-
-    //const updatedComments = findRestaurant.ratings.push(allComments)
-   
+     const updatedComments = findRestaurant.ratings
+     
+     const fetchAllComments = () =>{
+        setAllComments(updatedComments)
+     }
+     useEffect(()=>{fetchAllComments()},[])
+     
+     const list = allComments ? allComments : findRestaurant.ratings
+ 
+     const avgRating = list.reduce((totalAvgRating, allRating)=>(totalAvgRating = totalAvgRating + allRating.rating),0)/list.length;
+ 
+     
     return(
         <div>
             {   
@@ -27,14 +36,14 @@ export default function RestaurantDetails(){
       <ChakraProvider>
         <AddReview/>
       </ChakraProvider>
-                <p>{findRestaurant.menu.map((restaurantMenu)=>restaurantMenu.name)} </p>
+                <p>{findRestaurant.menu.map((restaurantMenu)=>restaurantMenu.name+",")} </p>
                 <p>{findRestaurant.address}</p>
-                <p> Average Ratings: {findRestaurant.averageRating}</p>
+                <p> Average Ratings: {avgRating}</p>
                 <hr/>
                 <h1>Reviews: </h1>
 
                 <hr/>
-                    {findRestaurant.ratings.map((eachRating)=>(  
+                    {list.map((eachRating)=>(  
                     <div> 
                     <img src={eachRating.pp} alt="ppic" height="48px" width="48px"></img>
                     <p>{eachRating.revName}</p>
@@ -43,15 +52,6 @@ export default function RestaurantDetails(){
                     <hr/>
                     </div>
                     ))}
-                {allComments.map((eachRating)=>(
-                    <div> 
-                    <img src={eachRating.pp} alt="ppic" height="48px" width="48px"></img>
-                    <p>{eachRating.revName}</p>
-                    <p>{eachRating.comment}</p>
-                    <p>{eachRating.rating}</p>
-                    <hr/>
-                    </div>
-                ))}
             </ul>
             }
             
